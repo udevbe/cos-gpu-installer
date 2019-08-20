@@ -1,3 +1,24 @@
+Note: This fork adds the missing X nvidia drivers. The Nvidia drivers are available in: `/var/lib/nvidia/lib64/xorg/` on the host machine. 
+
+To make X work in a container, the following prerequisites are required:
+
+- The container must be privileged
+- The following devices must be made available to the container:
+
+    - `/dev/nvidia0`
+    - `/dev/nvidiactl`
+    - `/dev/nvidia-uvm`
+    - `/dev/nvidia-uvm-tools`
+ - The Nvidia driver must be made available to the container ie `/var/lib/nvidia/lib64/` to `/usr/local/nvidia/lib64/`
+ - The Nvidia Xorg module path must be made known to the X server in xorg.conf:
+ ```
+Section "Files"
+    ModulePath      "/usr/lib/xorg/modules"
+    ModulePath      "/usr/local/nvidia/lib64/xorg/modules"
+EndSection
+ ```
+ - The X server must be started with `-seat 1` to trick X into not trying to open a virtual terminal.
+
 # GPU Driver Installer containers for Container-Optimized OS from Google
 
 Note: This is not an official Google product.
