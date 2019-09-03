@@ -13,8 +13,8 @@ To make X work in a container, the following prerequisites are required:
  - The Nvidia Xorg module path must be made known to the X server in xorg.conf:
  ```
 Section "Files"
-    ModulePath      "/usr/lib/xorg/modules"
     ModulePath      "/usr/local/nvidia/lib64/xorg/modules"
+    ModulePath      "/usr/lib/xorg/modules"
 EndSection
  ```
  - The X server must be started with `-seat 1` to trick X into not trying to open a virtual terminal.
