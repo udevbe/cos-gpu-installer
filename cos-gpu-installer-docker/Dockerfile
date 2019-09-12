@@ -32,4 +32,5 @@ COPY gpu_installer_url_lib.sh /gpu_installer_url_lib.sh
 COPY driver_signature_lib.sh /driver_signature_lib.sh
 COPY sign_gpu_driver.sh /sign_gpu_driver.sh
 COPY entrypoint.sh /entrypoint.sh
+RUN ln -sf /bin/bash /bin/sh
 CMD /entrypoint.sh
